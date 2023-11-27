@@ -3,7 +3,7 @@
 </script>
 
 <template>
-
+    <h1>你好-VUE</h1>
 </template>
 
 <style scoped>
