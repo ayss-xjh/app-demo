@@ -3,7 +3,8 @@
 </script>
 
 <template>
-    <h1>你好-VUE</h1>
+    <!-- 挂载路由组件 -->
+    <router-view></router-view>
 </template>
 
 <style scoped>
