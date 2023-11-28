@@ -1,10 +1,13 @@
 <script setup>
     import { reactive } from 'vue';
+    // 表单数据
     const fromModel = reactive({
         userPhone: '',
         passWord: ''
     })
+    // 表单提交回调函数
     const formSubmit = () => {
+        // 表单验证
         if(!(/^1[3-9][0-9]{9}$/.test(fromModel.userPhone))) {
             return ElMessage({
                 message: '手机号格式错误',
