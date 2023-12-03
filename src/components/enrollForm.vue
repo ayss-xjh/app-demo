@@ -1,13 +1,14 @@
 <script setup>
-    import { reactive } from 'vue';
+    import { reactive,inject } from 'vue';
     // 表单数据
     const fromModel = reactive({
         userPhone: '',
         passWord: '',
         passWordTwo: ''
     })
+    const $api = inject('$api')
     // 表单提交回调函数
-    const formSubmit = () => {
+    const formSubmit = async () => {
         // 表单验证
         if(!(/^1[3-9][0-9]{9}$/.test(fromModel.userPhone))) {
             return ElMessage({
@@ -23,6 +24,18 @@
             return ElMessage({
                 message: '两次密码不一致',
                 type: 'warning',
+            })
+        }
+        const data = await $api.enroll(fromModel)
+        if(data.code === 200) {
+            return ElMessage({
+                message: '注册成功',
+                type: 'success'
+            })
+        } else {
+            return ElMessage({
+                message: data.msg,
+                type: 'warning'
             })
         }
     }

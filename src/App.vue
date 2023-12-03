@@ -1,5 +1,10 @@
 <script setup>
-
+    import { inject } from 'vue'
+    const $api = inject('$api')
+    console.log('$api',$api)
+    $api.test().then((resolve, reject)=>{
+        console.log('resolve',resolve)
+    })
 </script>
 
 <template>

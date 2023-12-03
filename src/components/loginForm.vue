@@ -1,17 +1,33 @@
 <script setup>
-    import { reactive } from 'vue';
+    import { reactive, inject } from 'vue';
     // 表单数据
     const fromModel = reactive({
         userPhone: '',
         passWord: ''
     })
+    // 请求API
+    const $api = inject('$api')
     // 表单提交回调函数
-    const formSubmit = () => {
-        // 表单验证
+    const  formSubmit = async () => {
+        // 表单输入框格式验证
         if(!(/^1[3-9][0-9]{9}$/.test(fromModel.userPhone))) {
             return ElMessage({
                 message: '手机号格式错误',
                 type: 'warning',
+            })
+        }
+        // 发送登录请求
+        const data  = await $api.login(fromModel)
+        if(data.code === 200) {
+            window.localStorage.setItem('token',data.token)
+            return ElMessage({
+                message: '登录成功',
+                type: 'success'
+            })
+        } else {
+            return ElMessage({
+                message: data.msg,
+                type: 'warning'
             })
         }
     }
