@@ -1,7 +1,7 @@
 // import './assets/main.css'
 
 // 引入vue实例方法
-import { createApp,defineAsyncComponent } from 'vue'
+import { createApp } from 'vue'
 // 引入pinia
 import { createPinia } from 'pinia'
 // 引入路由

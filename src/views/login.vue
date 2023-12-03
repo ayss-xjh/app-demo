@@ -1,8 +1,10 @@
 <script setup>
+// 引入全局Stores isVisible
 import { useIsVisibleStores } from "../stores/isVisible.js"
 import loginTabs from "../components/loginTabs.vue"
 import loginForm from "../components/loginForm.vue"
 import enrollForm from "../components/enrollForm.vue"
+// dialog的v-model绑定全局Stores isVisible
 const isVisibleStores = useIsVisibleStores()
 </script>
 

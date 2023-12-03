@@ -1,5 +1,6 @@
 <script setup>
-    import { reactive, inject } from 'vue';
+    import { reactive, inject } from 'vue'
+    import { useIsVisibleStores } from '../stores/isVisible';
     // 表单数据
     const fromModel = reactive({
         userPhone: '',
@@ -19,7 +20,11 @@
         // 发送登录请求
         const data  = await $api.login(fromModel)
         if(data.code === 200) {
+            // 将token储存到本地LocalStorage
             window.localStorage.setItem('token',data.token)
+            // 登录后隐藏对话框
+            const isVisibleStores = useIsVisibleStores()
+            isVisibleStores.conversion()
             return ElMessage({
                 message: '登录成功',
                 type: 'success'

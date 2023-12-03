@@ -6,10 +6,11 @@
         passWord: '',
         passWordTwo: ''
     })
+    // 请求API
     const $api = inject('$api')
     // 表单提交回调函数
     const formSubmit = async () => {
-        // 表单验证
+        // 表单输入框格式验证
         if(!(/^1[3-9][0-9]{9}$/.test(fromModel.userPhone))) {
             return ElMessage({
                 message: '手机号格式错误',
@@ -26,6 +27,7 @@
                 type: 'warning',
             })
         }
+        // 发送注册请求
         const data = await $api.enroll(fromModel)
         if(data.code === 200) {
             return ElMessage({

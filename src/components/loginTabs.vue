@@ -1,5 +1,6 @@
 <script setup>
     import { ref } from "vue";
+    // 默认是登录选项
     const activeName = ref('login')
 </script>
 
